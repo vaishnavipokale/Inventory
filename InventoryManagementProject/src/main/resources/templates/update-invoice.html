@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Add Invoice details</title>
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/js/main.js}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<div th:replace="fragments :: menu"></div>
+</head>
+
+<body >
+
+
+<h1>Update Invoice Details</h1>
+<form th:action="@{/customer/saveInvoice}" th:object="${invoice}" method="post">
+    <div class="form-group">
+        <input type="hidden" th:field="*{id}"/>
+        <label for="totalAmount">total Amount</label>
+        <input class="form-control" type="text" th:field="*{totalAmount}" id="totalAmount" >
+       
+    </div>
+     <div class="form-group">
+      <label for="CustomerId">Customer Id</label>
+        <input class="form-control" type="text" th:field="*{CustomerId}" id="CustomerId" >
+      
+    </div>
+    <div class="form-group">
+  <label for="date">Date</label>
+        <input class="form-control" type="text" th:field="*{date}" id="date" >
+      
+    </div>
+    
+   
+    
+    <input type="submit"  class="btn btn-warning mb-3" value="Update Invoice">
+    <a  th:href = "@{/getInvoices}" class=" btn btn-primary btn-md mb-3 float-right"> Invoice List</a></li><br><br>
+</form>
+<div th:replace="fragments :: pageFooter"></div>
+</body>
+</html>

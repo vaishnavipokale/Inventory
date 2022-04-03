@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Supplier Details</title>
+  
+</head>
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/js/main.js}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<div th:replace="fragments :: menu"></div>
+<body>
+
+  
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${suppliers}" class="container my-5">
+                    <p class="my-5">
+                        <a href="/Supplierregistration" class="btn btn-warning"> Add Supplier</a>
+                    </p>
+                    <div class="col-md-10">
+                     <div class="alert alert-warning" th:if="${successMessage}" ></div>
+                        <h2 th:case="null">No Supplier yet!</h2>
+                        <div th:case="*">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                         <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>email</th>
+                                        <th>Contact No</th>
+                                        
+                                        <th colspan=2>Actions</th>
+                                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="supplier : ${suppliers}">  <!-- 1 -->
+                                        <td th:text="${supplier.firstName}"></td>
+                                        <td th:text="${supplier.lastName}"></td>
+                                        <td th:text="${supplier.email}"></td>
+                                        <td th:text="${supplier.contactNo}"></td>
+                                       
+                                        <td><a th:href="@{/updateFormSupplier/{id}(id=${supplier.id})}" class="btn btn-success">Edit</a></td> 
+                                        <td><a th:href="@{/deleteSupplier/{id}(id=${supplier.id})}" class="btn btn-danger">Delete</a></td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments :: pageFooter"></div>
+</body>
+</html>

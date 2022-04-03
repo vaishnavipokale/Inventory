@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+
+<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Add Product details</title>
+</head>
+
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/js/main.js}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<div th:replace="fragments :: menu"></div>
+<body>
+
+<h1>Add Product Details</h1>
+<form th:action="@{/saveProduct}" th:object="${product}" method="post" class="form needs-validation">
+    <div class="form-group">
+        <label for="productName">Product Name</label>
+        <input class="form-control" type="text" th:field="*{productName}" id="productName" placeholder="Product Name">
+        <div  th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></div>
+    </div>
+     <div class="form-group">
+        <label for="productDesc">Product Description</label>
+        <input class="form-control" type="text" th:field="*{productDesc}" id="productDesc" placeholder="product Desc">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('productDesc')}" th:errors="*{productDesc}"></div>
+    </div>
+    <div class="form-group">
+        <label for="productCategory">Product Category</label>
+        <input class="form-control" type="text" th:field="*{productCategory}" id="productCategory" placeholder="product Category">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('productCategory')}" th:errors="*{productCategory}"></div>
+    </div>
+    
+   
+    
+    <div class="form-group">
+        <label for="productPrice">Product price</label>
+        <input class="form-control" type="tel" th:field="*{productPrice}" id="productPrice" placeholder="productPrice">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('productPrice')}" th:errors="*{productPrice}"></div>
+    </div>
+    
+    
+    
+    
+    
+    
+    <input type="submit"  class="btn btn-warning mb-3" value="Add Product">
+    <a  th:href = "@{/getProducts}" class=" btn btn-primary btn-md mb-3 float-right"> Product List</a></li><br><br>
+</form>
+<div th:replace="fragments :: pageFooter"></div>
+</body>
+</html>

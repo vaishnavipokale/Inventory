@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Customer Details</title>
+    
+</head>
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/js/main.js}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<div th:replace="fragments :: menu"></div>
+<body>
+
+  
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${customers}" class="container my-5">
+                    <p class="my-5">
+                        
+                    </p>
+                    <div class="col-md-10">
+                     <div class="alert alert-warning" th:if="${successMessage}" ></div>
+                        <h2 th:case="null">No Customer yet!</h2>
+                        <div th:case="*">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                          <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>email</th>
+                                        <th>Contact No</th>
+                                        <th>address</th>
+                                        <th>password</th>
+                                       
+                                        
+                                        <th colspan=2>Actions</th>
+                                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="customer : ${customers}">  <!-- 1 -->
+                                        <td th:text="${customer.firstName}"></td>
+                                        <td th:text="${customer.lastName}"></td>
+                                        <td th:text="${customer.email}"></td>
+                                          <td th:text="${customer.contactNo}"></td>
+                                            <td th:text="${customer.address}"></td>
+                                              <td th:text="${customer.password}"></td>
+                                        
+                                       
+                                        <td><a th:href="@{/updateFormCustomer/{id}(id=${customer.id})}" class="btn btn-success">Edit</a></td> 
+                                        <td><a th:href="@{/deleteCus/{id}(id=${customer.id})}" class="btn btn-danger">Delete</a></td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments :: pageFooter"></div>
+
+</body>
+
+</html>
